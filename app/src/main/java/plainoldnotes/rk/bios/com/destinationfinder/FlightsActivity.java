@@ -69,9 +69,7 @@ private void initViewModel(){
 
         viewModel = ViewModelProviders.of(this).get(FlightListViewModel.class);
 
-        /*
-        Test
-         */
+ 
 
 
 }
