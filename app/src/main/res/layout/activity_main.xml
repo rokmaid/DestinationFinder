@@ -3,7 +3,7 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="10dp"
-    android:fontFamily="sans-serif">
+    style="@style/mainactivity_style">
 
 <android.support.design.widget.TextInputLayout
     android:layout_width="match_parent"
@@ -15,6 +15,7 @@
 
     <EditText
         android:id="@+id/txt_origin"
+        android:maxLength="3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 </android.support.design.widget.TextInputLayout>
@@ -25,10 +26,12 @@
     android:layout_height="wrap_content"
     android:id="@+id/txtinput_origin_country"
     android:hint="Origin Country"
-    android:layout_marginBottom="10dp">
+    android:layout_marginBottom="10dp"
+    >
 
     <EditText
         android:id="@+id/txt_origin_country"
+        android:maxLength="2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
