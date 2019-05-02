@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.OrientationEventListener;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.QuickContactBadge;
@@ -30,6 +31,7 @@ import model.Destination;
 import model.Destinations;
 import model.FlightData;
 import model.Token;
+import util.DataGenerator;
 import viewmodels.MainActivityViewModel;
 
 public class MainActivity extends AppCompatActivity {
@@ -42,10 +44,11 @@ public class MainActivity extends AppCompatActivity {
 
 
     @BindView(R.id.txt_origin)
-    EditText txt_origin ;
+    //EditText txt_origin ;
+    AutoCompleteTextView txt_origin ;
 
     @BindView((R.id.txt_origin_country))
-    EditText txtcountry_code ;
+    AutoCompleteTextView txtcountry_code ;
 
     @BindView(R.id.txtinput_origin)
     TextInputLayout txt_origin_input ;
@@ -57,6 +60,8 @@ public class MainActivity extends AppCompatActivity {
     private MutableLiveData<Token> mToken;
 
     private MutableLiveData<FlightData> flight_data ;
+
+    private String[] City_Codes={"MIA","NYC","DFW","LAX","LAS","CHI","MVD","BUE"} ;
 
 
     @Override
@@ -87,14 +92,24 @@ public class MainActivity extends AppCompatActivity {
         list.add("THEME-PARK");
 
 
+        ArrayAdapter<String> AutoComplete_Adapter_city_codes = new ArrayAdapter<String>(this,
+                android.R.layout.simple_dropdown_item_1line, City_Codes);
+
+        // txt_origin.setAdapter(AutoComplete_Adapter);
 
 
 
+        ArrayAdapter<String> AutoComplete_Adapter_country_codes = new ArrayAdapter<String>(this,
+                android.R.layout.simple_dropdown_item_1line, DataGenerator.getListOfCountryCodes());
 
-        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,
+        txtcountry_code.setAdapter(AutoComplete_Adapter_country_codes);
+
+
+        ArrayAdapter<String> dataAdapter_themes = new ArrayAdapter<String>(this,
                 android.R.layout.simple_spinner_item, list);
 
-          dropdown_theme.setAdapter(dataAdapter);
+        dropdown_theme.setAdapter(dataAdapter_themes);
+
 
 
 
@@ -122,6 +137,9 @@ public class MainActivity extends AppCompatActivity {
 
               }
           });
+
+
+          // on key down events for City and Country codes and update Text Boxes
 
 
     }
