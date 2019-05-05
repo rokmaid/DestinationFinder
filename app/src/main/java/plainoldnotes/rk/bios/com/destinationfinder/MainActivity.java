@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
 
     private MutableLiveData<FlightData> flight_data ;
 
-    private String[] City_Codes={"MIA","NYC","DFW","LAX","LAS","CHI","MVD","BUE"} ;
+    //private String[] City_Codes={"MIA","NYC","DFW","LAX","LAS","CHI","MVD","BUE"} ;
 
 
     @Override
@@ -92,10 +92,12 @@ public class MainActivity extends AppCompatActivity {
         list.add("THEME-PARK");
 
 
-        ArrayAdapter<String> AutoComplete_Adapter_city_codes = new ArrayAdapter<String>(this,
-                android.R.layout.simple_dropdown_item_1line, City_Codes);
+        List<String> city_list = DataGenerator.getListOfCityCodes(MainActivity.this);
 
-        // txt_origin.setAdapter(AutoComplete_Adapter);
+        ArrayAdapter<String> AutoComplete_Adapter_city_codes = new ArrayAdapter<String>(this,
+                android.R.layout.simple_dropdown_item_1line, city_list);
+
+         txt_origin.setAdapter(AutoComplete_Adapter_city_codes);
 
 
 
